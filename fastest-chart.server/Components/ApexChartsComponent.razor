@@ -1,12 +1,11 @@
-@using fastest_chart.server.Data
 @using ApexCharts
 
-<ApexChart TItem="ChartData"
+<ApexChart TItem="FastestChartData"
            Title="@Guid.NewGuid().ToString()"
-           Options=options>
+           Options=_options>
 
-    <ApexPointSeries TItem="ChartData"
-                     Items="chartData"
+    <ApexPointSeries TItem="FastestChartData"
+                     Items="_chartData"
                      Name="Hours Required"
                      XValue="@(e => e.Range)"
                      YAggregate="@(e => e.Sum(e => e.HoursRequired))"
@@ -14,8 +13,8 @@
                      SeriesType="SeriesType.Bar"
     />
 
-    <ApexPointSeries TItem="ChartData"
-                     Items="chartData"
+    <ApexPointSeries TItem="FastestChartData"
+                     Items="_chartData"
                      Name="Hours Available"
                      XValue="@(e => e.Range)"
                      YAggregate="@(e => e.Sum(e => e.HoursAvailable))"
@@ -23,8 +22,8 @@
                      SeriesType="SeriesType.Bar"
                      />
 
-    <ApexPointSeries TItem="ChartData"
-                     Items="chartData"
+    <ApexPointSeries TItem="FastestChartData"
+                     Items="_chartData"
                      Name="Qty Required"
                      XValue="@(e => e.Range)"
                      YAggregate="@(e => e.Sum(e => e.QtyRequired))"
@@ -32,8 +31,8 @@
                      SeriesType="SeriesType.Line"
                      />
 
-    <ApexPointSeries TItem="ChartData"
-                     Items="chartData"
+    <ApexPointSeries TItem="FastestChartData"
+                     Items="_chartData"
                      Name="Qty Available"
                      XValue="@(e => e.Range)"
                      YAggregate="@(e => e.Sum(e => e.QtyAvailable))"
@@ -44,19 +43,19 @@
 
 @code
 {
-    private ApexChartOptions<ChartData> options = new ApexChartOptions<ChartData>();
+    private ApexChartOptions<FastestChartData> _options = new ApexChartOptions<FastestChartData>();
     
-    private List<ChartData> chartData { get; set; } = SampleData.GetRandomW1ToW6Data(6, 100, 5);
+    private List<FastestChartData> _chartData { get; set; } = SampleData.GetRandomW1ToW6Data(6, 100, 5);
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        options.Chart = new Chart
+        _options.Chart = new ApexCharts.Chart()
         {
             Sparkline = new ChartSparkline { Enabled = true }
         };
 
-        options.Colors = new List<string>() {"#FF0000", "#2ECC71", "#2E86C1", "#D6EAF8"};
+        _options.Colors = new List<string>() {"#FF0000", "#2ECC71", "#2E86C1", "#D6EAF8"};
 
     }
 }

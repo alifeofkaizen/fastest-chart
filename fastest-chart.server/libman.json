@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "Chart.js@3.7.0",
+      "destination": "wwwroot/lib/chartjs/"
+    },
+    {
+      "library": "g2plot@2.4.5",
+      "destination": "wwwroot/lib/g2plot/"
+    }
+    ]
+}

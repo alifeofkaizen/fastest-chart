@@ -1,0 +1,97 @@
+@using AntDesign.Charts
+
+
+@* <Line Data="_chartData" Config="_config" /> *@
+<DualAxes Data="@(new object[] { data1, data2 })" Config="config1" />
+
+@code{
+    object data1 = new object[]{
+        new { year = "1991", value = 3, type="Hours Required" },
+        new  { year= "1992", value= 4, type="Hours Required" },
+        new  { year= "1993", value= 3.5, type="Hours Required" },
+        new  { year= "1994", value= 5, type="Hours Required" },
+        new  { year= "1995", value= 4.9, type="Hours Required" },
+        new  { year= "1996", value= 6, type="Hours Required" },
+        new  { year= "1997", value= 7, type="Hours Required" },
+        new  { year= "1998", value= 9, type="Hours Required" },
+        new  { year= "1999", value= 13, type="Hours Required" },
+        new   { year = "1991", value = 10, type="Hours Available" },
+        new   { year= "1992", value= 4, type="Hours Available" },
+        new   { year= "1993", value= 5, type="Hours Available" },
+        new   { year= "1994", value= 5, type="Hours Available" },
+        new   { year= "1995", value= 4.9, type="Hours Available" },
+        new  { year= "1996", value= 35, type="Hours Available" },
+        new  { year= "1997", value= 7, type="Hours Available" },
+        new  { year= "1998", value= 1, type="Hours Available" },
+        new  { year= "1999", value= 20, type="Hours Available" },
+    };
+
+    object data2 = new object[]
+    {
+        new {year = "1991", count = 1, type = "Qty Required"},
+        new {year = "1992", count = 1, type = "Qty Required"},
+        new {year = "1993", count = 1, type = "Qty Required"},
+        new {year = "1994", count = 1, type = "Qty Required"},
+        new {year = "1995", count = 1, type = "Qty Required"},
+        new {year = "1996", count = 1, type = "Qty Required"},
+        new {year = "1997", count = 1, type = "Qty Required"},
+        new {year = "1998", count = 1, type = "Qty Required"},
+        new {year = "1999", count = 1, type = "Qty Required"},
+        new {year = "1991", count = 10, type = "Qty Available"},
+        new {year = "1992", count = 10, type = "Qty Available"},
+        new {year = "1993", count = 10, type = "Qty Available"},
+        new {year = "1994", count = 10, type = "Qty Available"},
+        new {year = "1995", count = 10, type = "Qty Available"},
+        new {year = "1996", count = 10, type = "Qty Available"},
+        new {year = "1997", count = 10, type = "Qty Available"},
+        new {year = "1998", count = 10, type = "Qty Available"},
+        new {year = "1999", count = 10, type = "Qty Available"},
+    };
+    
+
+    DualAxesConfig config1 = new()
+    {
+        XField = "year",
+        YField = new[] { "value", "count" },
+        GeometryOptions = new object[] {
+            new {
+                Geometry= "line",
+                Color= new[] { "#FF0000", "#2ECC71" },
+                IsGroup="true",
+                SeriesField="type"
+            },
+            
+            new {
+                Geometry= "column",
+                Color= new[] { "#2E86C1", "#D6EAF8" },
+                IsGroup="true",
+                SeriesField="type"
+            },
+        },
+
+    };
+
+    // private List<FastestChartData> _chartData { get; set; } = SampleData.GetRandomW1ToW6Data(6, 100, 5);
+    //
+    //
+    // private LineConfig _config = new LineConfig();
+    //
+    // protected override void OnInitialized()
+    // {
+    //     base.OnInitialized();
+    //
+    //     _config = new LineConfig()
+    //     {
+    //         Title = new Title()
+    //         {
+    //             Visible = true,
+    //             Text = Guid.NewGuid().ToString(),
+    //         },
+    //         Padding = "auto",
+    //         ForceFit = true,
+    //         XField = "HoursRequired",
+    //         YField = "Range",
+    //         Smooth = true,
+    //     };
+    // }
+}

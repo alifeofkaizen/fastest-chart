@@ -1,6 +1,6 @@
 namespace fastest_chart.server.Data;
 
-public class ChartData
+public class FastestChartData
 {
     public Guid OrderId { get; set; } = Guid.NewGuid();
     public string Range { get; set; }
