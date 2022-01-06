@@ -1,0 +1,62 @@
+@using fastest_chart.server.Data
+@using ApexCharts
+
+<ApexChart TItem="ChartData"
+           Title="@Guid.NewGuid().ToString()"
+           Options=options>
+
+    <ApexPointSeries TItem="ChartData"
+                     Items="chartData"
+                     Name="Hours Required"
+                     XValue="@(e => e.Range)"
+                     YAggregate="@(e => e.Sum(e => e.HoursRequired))"
+                     OrderByDescending="e => e.Y"
+                     SeriesType="SeriesType.Bar"
+    />
+
+    <ApexPointSeries TItem="ChartData"
+                     Items="chartData"
+                     Name="Hours Available"
+                     XValue="@(e => e.Range)"
+                     YAggregate="@(e => e.Sum(e => e.HoursAvailable))"
+                     OrderByDescending="e => e.Y"
+                     SeriesType="SeriesType.Bar"
+                     />
+
+    <ApexPointSeries TItem="ChartData"
+                     Items="chartData"
+                     Name="Qty Required"
+                     XValue="@(e => e.Range)"
+                     YAggregate="@(e => e.Sum(e => e.QtyRequired))"
+                     OrderByDescending="e => e.Y"
+                     SeriesType="SeriesType.Line"
+                     />
+
+    <ApexPointSeries TItem="ChartData"
+                     Items="chartData"
+                     Name="Qty Available"
+                     XValue="@(e => e.Range)"
+                     YAggregate="@(e => e.Sum(e => e.QtyAvailable))"
+                     OrderByDescending="e => e.Y"
+                     SeriesType="SeriesType.Line"
+                     />
+</ApexChart>
+
+@code
+{
+    private ApexChartOptions<ChartData> options = new ApexChartOptions<ChartData>();
+    
+    private List<ChartData> chartData { get; set; } = SampleData.GetRandomW1ToW6Data(6, 100, 5);
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        options.Chart = new Chart
+        {
+            Sparkline = new ChartSparkline { Enabled = true }
+        };
+
+        options.Colors = new List<string>() {"#FF0000", "#2ECC71", "#2E86C1", "#D6EAF8"};
+
+    }
+}
